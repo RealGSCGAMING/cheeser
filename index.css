@@ -1,0 +1,55 @@
+@import url(global.css);
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#welcome-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background: linear-gradient(45deg, #121212, #595959);
+    color: white;
+    font-size: 10vw;
+    height: 100vh;
+    width: 100vw;
+    animation: slideOut 1s ease-in-out forwards 2s;
+    box-sizing: border-box;
+}
+
+#welcome-logo {
+    height: 50%;
+    animation: spin 2s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}

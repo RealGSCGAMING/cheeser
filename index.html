@@ -1,134 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Cheeser Inc</title>
-    <link rel="icon" href="cheese.png">
-    <link href="https://fonts.cdnfonts.com/css/br-cobane" rel="stylesheet">
-    <style>
-        body {
-            font-family: "BR Cobane", sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            padding: 20px;
-            background-color: #FAF9F6;
-        }
 
-        .logo {
-            width: 300px;
-        }
+    <link rel="stylesheet" href="index.css">
 
-        .cardbox {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            flex-flow: row wrap;
-            max-width: 50%;
-            background-color: #a1a1a0;
-            border-radius: 20px;
-        }
-
-        .card {
-            border: 2px solid black;
-            border-radius: 20px;
-            padding: 20px;
-            background-color: #dfdeda;
-            max-width: 25%;
-            margin: 10px;
-            align-content: center;
-            transition: box-shadow 0.1s, transform 0.1s;
-        }
-
-        .card:hover {
-            box-shadow: 5px 5px 5px rgb(111, 111, 111);
-            transform: translateY(-5px);
-        }
-
-        footer {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: white;
-            opacity: 50%;
-            padding: 20px;
-            transition: transform 0.1s;
-            border-radius: 10px;
-            transform: translateY(100px);
-        }
-
-        footer.show {
-            transform: translateY(0px);
-        }
-
-        footer.show:hover {
-            transform: translateY(10px);
-        }
-
-        small {
-            font-size: 8px;
-        }
-
-    </style>
 </head>
 
 <body>
-    <img class="logo" src="logo.PNG">
-    <h1>Welcome to Cheeser Inc!</h1>
-    <p>Cheeser Inc. is a multi-million dollar mining company located on the Moon.</p>
-    <div class="card" style="max-width: 50%;">
-        <h2>Our Story</h2>
-        <p>One day our founder, Mr. Cheeser, purchased a one-way Uber trip to the moon, hoping to strike it rich.
-            When he arrived, he realized that the Moon was actually made of cheese! And so he started Cheeser Inc to
-            mine the cheese and send it back to Earth.</p>
+    <div id="welcome-modal">
+        <img id="welcome-logo" src="assets/logo.png" alt="Cheeser Inc Logo">
     </div>
 
-    <div class="cardbox">
-        <div class="card">
-            <h1>Our Team</h1>
-        </div>
-        <div class="card">
-            <h2>Mr. Cheeser</h2>
-            <p>The founder and CEO of Cheeser Inc, said <small>(by himself)</small> to be the richest person in history.</p>
-        </div>
-        <div class="card">
-            <h2>banana man</h2>
-            <p>Head of outreach and marketing for Cheeser Inc.</p>
-        </div>
-        <div class="card">
-            <h2>Darenosaur</h2>
-            <p>Darenosaur is the iconic Cheeser Inc mascot.</p>
-        </div>
-        <div class="card">
-            <h2>Uncle Terry</h2>
-            <p>We're not exactly sure how Uncle Terry managed to become part of the company, but I guess he's here too.</p>
-        </div>
-        <div class="card">
-            <h2>We're Hiring!</h2>
-            <p>Join us today for great wages* and great benefits*!</p>
-            <small>*Wages starting at $0/hr.</small>
-            <small>**New applicants recieve free one-way transport to the Moon.</small>
-        </div>
+    <div id="other-block">
+        <p>Hi</p>
     </div>
 
-    <footer id="footer">This website will be updated soon, stay tuned!</footer>
 </body>
 
-<script>
-
-    let footer = document.getElementById("footer");
-
-    footer.addEventListener("click", function() {
-        footer.style.transform = "translateY(100px)"
-    });
-
-    window.onload(
-        setTimeout(() => {
-            footer.classList.add("show");
-        }, 100)
-    );
-
-</script>
+<script src="index.js"></script>
 
 </html>
