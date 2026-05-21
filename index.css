@@ -2,6 +2,8 @@
 
 :root {
     --primary-color: #9d9d9d;
+    --secondary-color: #000000;
+    --shadow-color: #ffffff;
 }
 
 body {
@@ -13,9 +15,41 @@ body {
     padding: 20px;
     box-sizing: border-box;
     background-color: var(--primary-color);
+    transition: background-color 0.5s ease;
 }
 
 /* Main Content Styles */
+#title-modal {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+#title {
+    color: var(--secondary-color);
+    font-size: 750%;
+    letter-spacing: 20px;
+    line-height: 1;
+    animation: flowIn 0.5s ease-out forwards 2s;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+#subtitle {
+    color: var(--secondary-color);
+    font-size: 150%;
+    letter-spacing: 10px;
+    line-height: 1;
+    animation: flowIn 1s ease-out forwards 2.5s;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
 #selector-modal {
     position: absolute;
     left: 5%;
@@ -28,7 +62,7 @@ body {
 }
 
 .selector-option {
-    color: black;
+    color: var(--secondary-color);
     padding: 10px 20px 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -44,7 +78,7 @@ body {
 }
 
 .selector-option:hover {
-    background-color: black;
+    background-color: var(--secondary-color);
     color: #ffffff;
     font-size: 240%;
     letter-spacing: 40px;
@@ -59,6 +93,9 @@ body {
     opacity: 0;
     animation: fadeIn 1s ease-out forwards 1.5s;
     transition: all 0.3s ease;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    cursor: pointer;
 }
 
 #menu-logo:hover {
