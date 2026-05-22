@@ -18,6 +18,9 @@ aboutOption.addEventListener("click", () => {
     const aboutModal = document.getElementById("about-modal");
     aboutModal.style.opacity = "1";
     aboutModal.style.pointerEvents = "auto";
+    aboutModal.style.overflow = "unset";
+    aboutModal.style.height = "unset";
+    aboutModal.style.width = "unset";
     document.getElementById("menu-modal").style.pointerEvents = "none";
 });
 
@@ -26,6 +29,9 @@ closeAbout.addEventListener("click", () => {
     const aboutModal = document.getElementById("about-modal");
     aboutModal.style.opacity = "0";
     aboutModal.style.pointerEvents = "none";
+    aboutModal.style.overflow = "hidden";
+    aboutModal.style.height = "100vh";
+    aboutModal.style.width = "100vw";
     document.getElementById("menu-modal").style.pointerEvents = "auto";
 });
 
