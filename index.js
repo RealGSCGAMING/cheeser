@@ -13,6 +13,38 @@ menuLogo.addEventListener("click", () => {
     document.documentElement.style.setProperty('--shadow-color', getRandomColor(0, 255));
 });
 
+const aboutOption = document.getElementById("about-option");
+aboutOption.addEventListener("click", () => {
+    const aboutModal = document.getElementById("about-modal");
+    aboutModal.style.opacity = "1";
+    aboutModal.style.pointerEvents = "auto";
+    document.getElementById("menu-modal").style.pointerEvents = "none";
+});
+
+const closeAbout = document.getElementById("close-about");
+closeAbout.addEventListener("click", () => {
+    const aboutModal = document.getElementById("about-modal");
+    aboutModal.style.opacity = "0";
+    aboutModal.style.pointerEvents = "none";
+    document.getElementById("menu-modal").style.pointerEvents = "auto";
+});
+
+const productsOption = document.getElementById("products-option");
+productsOption.addEventListener("click", () => {
+    const productsModal = document.getElementById("products-modal");
+    productsModal.style.opacity = "1";
+    productsModal.style.pointerEvents = "auto";
+    document.getElementById("menu-modal").style.pointerEvents = "none";
+});
+
+const closeProducts = document.getElementById("close-products");
+closeProducts.addEventListener("click", () => {
+    const productsModal = document.getElementById("products-modal");
+    productsModal.style.opacity = "0";
+    productsModal.style.pointerEvents = "none";
+    document.getElementById("menu-modal").style.pointerEvents = "auto";
+});
+
 function getRandomColor(min = 0, max = 255) {
     const r = Math.floor(Math.random() * (max - min + 1) + min);
     const g = Math.floor(Math.random() * (max - min + 1) + min);
@@ -76,15 +108,15 @@ function applyExtrusionShadow(selector, color = '#00c882', length = 1500, angle 
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
 
-        // cubic ease-out for smooth finish
-        const easeProgress = 1 - Math.pow(1 - progress, 3);
-        const currentLength = Math.max(1, Math.floor(easeProgress * length));
+        const currentLength = Math.max(1, Math.floor(progress * length));
 
         const currentShadowStyle = shadowArray.slice(0, currentLength).join(', ');
 
         shadowClones.forEach(clone => {
             clone.style.textShadow = currentShadowStyle;
-            clone.style.transition = "text-shadow 0.3s ease";
+            setTimeout(() => {
+                clone.style.transition = "text-shadow 0.3s ease";
+            }, duration + 100);
         });
 
         if (progress < 1) {
@@ -96,5 +128,5 @@ function applyExtrusionShadow(selector, color = '#00c882', length = 1500, angle 
 }
 
 setTimeout(() => {
-    applyExtrusionShadow('#title', 'var(--shadow-color)', 1500, 30, 500);
+    applyExtrusionShadow('#title', 'var(--shadow-color)', 2000, 30, 500);
 }, 2250);

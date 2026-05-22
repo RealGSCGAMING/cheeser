@@ -43,7 +43,7 @@ body {
 
 #subtitle {
     color: var(--secondary-color);
-    font-size: 150%;
+    font-size: 2rem;
     letter-spacing: 10px;
     line-height: 1;
     animation: flowIn 1s ease-out forwards 2.5s;
@@ -103,6 +103,91 @@ body {
     opacity: 1;
     transform: scale(1.1);
     background: radial-gradient(circle at center, #ffffff 0%, #ffffff 49%, transparent 49%, transparent 100%);
+}
+
+/* About Modal Styles */
+#about-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.99);
+    color: black;
+    font-size: 1.25rem;
+    padding: 40px;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#about-modal h1 {
+    font-size: 3rem;
+}
+
+#about-modal h2 {
+    font-size: 1.5rem;
+    text-decoration: italic;
+}
+
+#about-modal div {
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    max-width: 50%;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+}
+
+#about-modal div:hover {
+    box-shadow: 5px 5px 5px rgb(111, 111, 111);
+    transform: translateY(-5px);
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 50%;
+}
+
+.close-button:hover {
+    background-color: rgb(255, 151, 151);
+}
+
+/* Products Modal Styles */
+#products-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.99);
+    color: black;
+    font-size: 1.5rem;
+    padding: 40px;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
 }
 
 /* Welcome Modal Styles */
