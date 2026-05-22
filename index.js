@@ -84,18 +84,17 @@ function applyExtrusionShadow(selector, color = '#00c882', length = 1500, angle 
 
         shadowClones.forEach(clone => {
             clone.style.textShadow = currentShadowStyle;
+            clone.style.transition = "text-shadow 0.3s ease";
         });
 
         if (progress < 1) {
             requestAnimationFrame(animateShadow);
         }
-
-        shadowClone.style.transition = "text-shadow 0.3s ease";
     }
 
     requestAnimationFrame(animateShadow);
 }
 
 setTimeout(() => {
-    applyExtrusionShadow('#title', 'var(--shadow-color)', 1500, 30, 1500);
-}, 2200);
+    applyExtrusionShadow('#title', 'var(--shadow-color)', 1500, 30, 500);
+}, 2250);
