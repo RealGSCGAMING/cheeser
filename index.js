@@ -16,40 +16,80 @@ menuLogo.addEventListener("click", () => {
 const aboutOption = document.getElementById("about-option");
 aboutOption.addEventListener("click", () => {
     const aboutModal = document.getElementById("about-modal");
-    aboutModal.style.opacity = "1";
-    aboutModal.style.pointerEvents = "auto";
-    aboutModal.style.overflow = "unset";
-    aboutModal.style.height = "unset";
-    aboutModal.style.width = "unset";
-    document.getElementById("menu-modal").style.pointerEvents = "none";
+    openModal(aboutModal);
 });
 
 const closeAbout = document.getElementById("close-about");
 closeAbout.addEventListener("click", () => {
     const aboutModal = document.getElementById("about-modal");
-    aboutModal.style.opacity = "0";
-    aboutModal.style.pointerEvents = "none";
-    aboutModal.style.overflow = "hidden";
-    aboutModal.style.height = "100vh";
-    aboutModal.style.width = "100vw";
-    document.getElementById("menu-modal").style.pointerEvents = "auto";
+    closeModal(aboutModal);
 });
 
 const productsOption = document.getElementById("products-option");
 productsOption.addEventListener("click", () => {
     const productsModal = document.getElementById("products-modal");
-    productsModal.style.opacity = "1";
-    productsModal.style.pointerEvents = "auto";
-    document.getElementById("menu-modal").style.pointerEvents = "none";
+    openModal(productsModal);
 });
 
 const closeProducts = document.getElementById("close-products");
 closeProducts.addEventListener("click", () => {
     const productsModal = document.getElementById("products-modal");
-    productsModal.style.opacity = "0";
-    productsModal.style.pointerEvents = "none";
-    document.getElementById("menu-modal").style.pointerEvents = "auto";
+    closeModal(productsModal);
 });
+
+const teamOption = document.getElementById("team-option");
+teamOption.addEventListener("click", () => {
+    const teamModal = document.getElementById("team-modal");
+    openModal(teamModal);
+});
+
+const closeTeam = document.getElementById("close-team");
+closeTeam.addEventListener("click", () => {
+    const teamModal = document.getElementById("team-modal");
+    closeModal(teamModal);
+});
+
+const contactOption = document.getElementById("contact-option");
+contactOption.addEventListener("click", () => {
+    const contactModal = document.getElementById("contact-modal");
+    openModal(contactModal);
+});
+
+const closeContact = document.getElementById("close-contact");
+closeContact.addEventListener("click", () => {
+    const contactModal = document.getElementById("contact-modal");
+    closeModal(contactModal);
+});
+
+function openModal(modal) {
+    modal.style.opacity = "1";
+    modal.style.pointerEvents = "auto";
+    document.getElementById("menu-modal").style.pointerEvents = "none";
+    modal.style.overflow = "auto";
+}
+
+function closeModal(modal) {
+    modal.style.opacity = "0";
+    modal.style.pointerEvents = "none";
+    document.getElementById("menu-modal").style.pointerEvents = "auto";
+    modal.style.overflow = "hidden";
+}
+
+if (globalThis.location.hash === "#team") {
+    openModal(document.getElementById("team-modal"));
+}
+
+if (globalThis.location.hash === "#products") {
+    openModal(document.getElementById("products-modal"));
+}
+
+if (globalThis.location.hash === "#contact") {
+    openModal(document.getElementById("contact-modal"));
+}
+
+if (globalThis.location.hash === "#about") {
+    openModal(document.getElementById("about-modal"));
+}
 
 function getRandomColor(min = 0, max = 255) {
     const r = Math.floor(Math.random() * (max - min + 1) + min);

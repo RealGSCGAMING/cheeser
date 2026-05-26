@@ -105,8 +105,8 @@ body {
     background: radial-gradient(circle at center, #ffffff 0%, #ffffff 49%, transparent 49%, transparent 100%);
 }
 
-/* About Modal Styles */
-#about-modal {
+/* Modal Styles */
+.info-modal {
     position: absolute;
     top: 0;
     left: 0;
@@ -128,36 +128,37 @@ body {
     transition: opacity 0.5s ease;
 }
 
-#about-modal h1 {
+.info-modal h1 {
     font-size: 3rem;
 }
 
-#about-modal h2 {
+.info-modal h2 {
     font-size: 1.5rem;
     text-decoration: italic;
 }
 
-#about-modal small {
+.info-modal small {
     font-size: 0.5rem;
 }
 
-#about-modal div {
+.info-modal div {
     background-color: rgb(226, 226, 226);
     padding: 20px;
     border: 2px solid black;
     border-radius: 10px;
-    max-width: 50%;
     transition: all 0.3s ease;
     margin: 20px 0;
+    width: 50%;
+    max-width: 75%;
 }
 
-#about-modal div:hover {
+.info-modal div:hover {
     box-shadow: 5px 5px 5px rgb(111, 111, 111);
     transform: translateY(-5px);
 }
 
 .close-button {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     background-color: transparent;
@@ -173,26 +174,23 @@ body {
     background-color: rgb(255, 151, 151);
 }
 
-/* Products Modal Styles */
-#products-modal {
-    position: absolute;
-    top: 0;
-    left: 0;
+.photo-modal {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    z-index: 5;
-    background-color: rgba(255, 255, 255, 0.99);
-    color: black;
-    font-size: 1.5rem;
-    padding: 40px;
-    box-sizing: border-box;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
+    width: 50%;
+}
+
+.photo-modal .photo {
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+    max-width: 75%;
+}
+
+.photo-modal .photo img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Welcome Modal Styles */

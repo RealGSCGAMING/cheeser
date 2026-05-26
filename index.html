@@ -5,6 +5,7 @@
     <title>Cheeser Inc</title>
 
     <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="assets/cheese.png">
 
 </head>
 
@@ -29,12 +30,13 @@
         <img id="menu-logo" src="assets/logo.png" alt="Cheeser Inc Logo">
     </div>
 
-    <div id="about-modal">
+    <div id="about-modal" class="info-modal">
         <button class="close-button" id="close-about">X</button>
         <h1>About Us</h1>
         <div>
             <h2>Our Story</h2>
-            <p style="font-style: italic;">"Welcome to Cheeser Inc, the multimillion dollar mining company on the Moon!"</p>
+            <p style="font-style: italic;">"Welcome to Cheeser Inc, the multimillion dollar mining company on the Moon!"
+            </p>
             <p>One day our founder, Mr. Cheeser, purchased a one-way Uber trip to the Moon, hoping to strike it rich.
                 When he arrived, he realized that the Moon was actually made of cheese! As such, Cheeser Inc was formed
                 to mine the cheese and return it to Earth.</p>
@@ -43,17 +45,16 @@
             <h2>Our Mission</h2>
             <p>Cheeser Inc is dedicated to designing and producing the best products in the world. Yes, the entire
                 world. There is no company that makes better products than us.</p>
-            <p>We also create games, tools, and other content designed to raise awareness of our products, which, if you
-                haven't heard, are the best in the world.</p>
         </div>
         <div>
             <h2>Our Founder</h2>
-            <p>Mr. Cheeser, our founder and CEO, is said* to be the richest, smartest, most beautiful person in history.</p>
+            <p>Mr. Cheeser, our founder and CEO, is said* to be the richest, smartest, most beautiful person in history.
+            </p>
             <small>*by himself</small>
         </div>
     </div>
 
-    <div id="products-modal">
+    <div id="products-modal" class="info-modal">
         <h1>Our Products</h1>
         <p>Discover the cutting-edge solutions we offer for lunar mining and space exploration.</p>
         <div>
@@ -65,6 +66,54 @@
             <p>Our delicious pizzas, perfect for feeding your team during long lunar missions.</p>
         </div>
         <button class="close-button" id="close-products">X</button>
+    </div>
+
+    <div id="team-modal" class="info-modal">
+        <h1>Our Team</h1>
+        <p>Meet the brilliant minds behind Cheeser Inc.</p>
+        <div class="photo-modal">
+            <div class="photo"><img src="assets/mrcheeser.png" alt="Mr. Cheeser"></div>
+            <div>
+                <h2>Mr. Cheeser</h2>
+                <p>Description</p>
+            </div>
+        </div>
+
+        <div class="photo-modal">
+            <div class="photo"><img src="assets/default.png" alt="Banana Man"></div>
+            <div>
+                <h2>Banana Man</h2>
+                <p>Description</p>
+            </div>
+        </div>
+
+        <div class="photo-modal">
+            <div class="photo"><img src="assets/default.png" alt="Uncle Terry"></div>
+            <div>
+                <h2>Uncle Terry</h2>
+                <p>We're actually not sure about Uncle Terry's role at Cheeser Inc. He just kind of appeared one day and won't leave. If you see him, stay as far away as possible.</p>
+            </div>
+        </div>
+
+        <div class="photo-modal">
+            <div class="photo"><img src="assets/darenosaur2.png" alt="Darenosaur"></div>
+            <div>
+                <h2>Darenosaur</h2>
+                <p>Darenosaur is Cheeser Inc's iconic mascot. His charm and wit make him a beloved figure among our employees and customers alike.</p>
+            </div>
+        </div>
+
+        <button class="close-button" id="close-team">X</button>
+    </div>
+
+    <div id="contact-modal" class="info-modal">
+        <h1>Contact Us</h1>
+        <p>Have questions or want to learn more about Cheeser Inc? Get in touch with us!</p>
+        <div>
+            <h2>Email</h2>
+            <p>You can reach us at <a href="mailto:help@cheeserinc.com">help@cheeserinc.com</a></p>
+        </div>
+        <button class="close-button" id="close-contact">X</button>
     </div>
 
 </body>
