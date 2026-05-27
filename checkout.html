@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheeser Inc - Checkout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f3f4f6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .product-section {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666666;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .product-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 13px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .detail-label {
+            color: #666;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .order-summary {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .summary-item.total {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .card-input-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .card-digit-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .card-digit-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-align: center;
+            transition: border-color 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .card-digit-group input:focus {
+            outline: none;
+            border-color: #c3c3c3;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .card-digit-group input::placeholder {
+            color: #d1d5db;
+            letter-spacing: 0;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #16a34a;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .lock-icon {
+            font-size: 14px;
+        }
+
+        .error-state input {
+            border-color: #dc2626 !important;
+        }
+
+        @media (max-width: 480px) {
+            .checkout-container {
+                padding: 25px;
+            }
+
+            .product-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <div class="header">
+            <div class="logo"><img src="assets/logo.png" alt="Cheeser Inc Logo" width="25%"></div>
+            <h1 class="title">Checkout</h1>
+            <p class="subtitle">Secure payment with Cheeser Card</p>
+        </div>
+
+        <div class="product-section">
+            <div class="product-image" id="productImage">
+                <img id="productImageImg" style="display: none;" alt="Product">
+                <span id="productImagePlaceholder">Product Image</span>
+            </div>
+            <div class="product-info">
+                <div class="product-name" id="productName">Premium Cheddar</div>
+                <div class="product-description" id="productDescription">High-quality artisanal cheese</div>
+            </div>
+            <div class="product-details">
+                <div class="detail-item">
+                    <span class="detail-label">Price:</span>
+                    <span class="detail-value" id="productPrice">$29.99</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Quantity:</span>
+                    <span class="detail-value" id="productQuantity">1</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Weight:</span>
+                    <span class="detail-value" id="productWeight">1 lb</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">SKU:</span>
+                    <span class="detail-value" id="productSku">CHE-001</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="subtotal">$29.99</span>
+            </div>
+            <div class="summary-item">
+                <span>Tax:</span>
+                <span id="tax">$2.40</span>
+            </div>
+            <div class="summary-item">
+                <span>Shipping:</span>
+                <span id="shipping">Free</span>
+            </div>
+            <div class="summary-item total">
+                <span>Total:</span>
+                <span id="total">$32.39</span>
+            </div>
+        </div>
+
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label for="cardInput">Cheeser Card Number</label>
+                <div class="card-input-wrapper">
+                    <div class="card-digit-group">
+                        <input class="card-digit" maxlength="3" placeholder="•••" required>
+                    </div>
+                    <div class="card-digit-group">
+                        <input class="card-digit" maxlength="3" placeholder="•••" required>
+                    </div>
+                    <div class="card-digit-group">
+                        <input class="card-digit" maxlength="3" placeholder="•••" required>
+                    </div>
+                    <div class="card-digit-group">
+                        <input class="card-digit" maxlength="3" placeholder="•••" required>
+                    </div>
+                </div>
+                <div class="error-message" id="errorMessage">Invalid card number. Please check and try again.</div>
+                <div class="success-message" id="successMessage">✓ Payment successful!</div>
+            </div>
+
+            <button type="submit" id="submitBtn">Complete Purchase</button>
+
+            <div class="security-badge">
+                <span class="lock-icon">🔒</span>
+                <span>Secure checkout powered by Cheeser Inc</span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Parse URL parameters
+        function getUrlParam(param) {
+            const searchParams = new URLSearchParams(globalThis.location.search);
+            return searchParams.get(param);
+        }
+
+        // Load product information from URL params
+        function loadProductInfo() {
+            const name = getUrlParam('name') || 'Premium Cheddar';
+            const price = getUrlParam('price') || '29.99';
+            const quantity = getUrlParam('quantity') || '1';
+            const description = getUrlParam('description') || 'High-quality artisanal cheese';
+            const weight = getUrlParam('weight') || '1 lb';
+            const sku = getUrlParam('sku') || 'CHE-001';
+            const image = getUrlParam('image');
+
+            // Update product display
+            document.getElementById('productName').textContent = name;
+            document.getElementById('productDescription').textContent = description;
+            document.getElementById('productPrice').textContent = `$${Number.parseFloat(price).toFixed(2)}`;
+            document.getElementById('productQuantity').textContent = quantity;
+            document.getElementById('productWeight').textContent = weight;
+            document.getElementById('productSku').textContent = sku;
+
+            // Load image if provided
+            if (image) {
+                const img = document.getElementById('productImageImg');
+                img.src = image;
+                img.style.display = 'block';
+                document.getElementById('productImagePlaceholder').style.display = 'none';
+            }
+
+            // Calculate totals
+            const subtotal = Number.parseFloat(price) * Number.parseInt(quantity);
+            const taxRate = 0.08; // 8% tax
+            const tax = subtotal * taxRate;
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Handle card digit inputs
+        const cardInputs = document.querySelectorAll('.card-digit');
+
+        cardInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                // Only allow digits
+                e.target.value = e.target.value.replace(/\D/g, '');
+
+                // Auto-focus to next field when 3 digits entered
+                if (e.target.value.length === 3 && index < cardInputs.length - 1) {
+                    cardInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                // Handle backspace to go to previous field
+                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                    cardInputs[index - 1].focus();
+                }
+            });
+
+            // Prevent pasting and let user type only
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // Clear previous messages
+            errorMessage.classList.remove('show');
+            successMessage.classList.remove('show');
+            document.querySelector('.card-input-wrapper').parentElement.classList.remove('error-state');
+
+            errorMessage.classList.add('show');
+            document.querySelector('.card-input-wrapper').parentElement.classList.add('error-state');
+
+            // Clear and focus first input
+            cardInputs.forEach(input => input.value = '');
+            cardInputs[0].focus();
+        });
+
+        // Initialize
+        loadProductInfo();
+    </script>
+</body>
+
+</html>
