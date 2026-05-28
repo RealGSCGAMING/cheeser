@@ -115,7 +115,7 @@ body {
     align-items: center;
     text-align: center;
     z-index: 5;
-    background-color: white;
+    background-color: var(--primary-color);
     color: black;
     font-size: 1.25rem;
     padding: 40px;
@@ -193,7 +193,13 @@ body {
     height: auto;
 }
 
-.info-modal .testimonials {
+.product {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+.info-modal .extra-info {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -202,17 +208,17 @@ body {
     width: 100%;
 }
 
-.info-modal .testimonials:hover {
+.info-modal > .large:hover {
     transform: none;
     box-shadow: none;
 }
 
-.info-modal .testimonials > div:hover {
+.info-modal .extra-info > div:hover {
     transform: none;
     box-shadow: none;
 }
 
-button {
+.go-button {
     background-color: white;
     color: black;
     border: 2px solid black;
@@ -223,7 +229,7 @@ button {
     transition: all 0.3s ease;
 }
 
-button:hover {
+.go-button:hover {
     background-color: black;
     color: white;
     transform: translateY(-5px);
