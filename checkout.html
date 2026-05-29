@@ -270,7 +270,7 @@
         <div class="header">
             <div class="logo"><img src="assets/logo.png" alt="Cheeser Inc Logo" width="25%"></div>
             <h1 class="title">Checkout</h1>
-            <p class="subtitle">Secure payment with Cheeser Card</p>
+            <p class="subtitle">Secure payment with Cheeser Card℠</p>
         </div>
 
         <div class="product-section">
@@ -279,8 +279,8 @@
                 <span id="productImagePlaceholder">Product Image</span>
             </div>
             <div class="product-info">
-                <div class="product-name" id="productName">Premium Cheddar</div>
-                <div class="product-description" id="productDescription">High-quality artisanal cheese</div>
+                <div class="product-name" id="productName">Error</div>
+                <div class="product-description" id="productDescription">An error occurred while loading the product details.</div>
             </div>
             <div class="product-details">
                 <div class="detail-item">
@@ -290,14 +290,6 @@
                 <div class="detail-item">
                     <span class="detail-label">Quantity:</span>
                     <span class="detail-value" id="productQuantity">1</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Weight:</span>
-                    <span class="detail-value" id="productWeight">1 lb</span>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">SKU:</span>
-                    <span class="detail-value" id="productSku">CHE-001</span>
                 </div>
             </div>
         </div>
@@ -346,7 +338,7 @@
 
             <div class="security-badge">
                 <span class="lock-icon">🔒</span>
-                <span>Secure checkout powered by Cheeser Inc</span>
+                <span>Relatively secure checkout</span>
             </div>
         </form>
     </div>
@@ -360,12 +352,10 @@
 
         // Load product information from URL params
         function loadProductInfo() {
-            const name = getUrlParam('name') || 'Premium Cheddar';
+            const name = getUrlParam('name') || 'Error';
             const price = getUrlParam('price') || '29.99';
             const quantity = getUrlParam('quantity') || '1';
-            const description = getUrlParam('description') || 'High-quality artisanal cheese';
-            const weight = getUrlParam('weight') || '1 lb';
-            const sku = getUrlParam('sku') || 'CHE-001';
+            const description = getUrlParam('description') || 'An error occurred while loading the product details.';
             const image = getUrlParam('image');
 
             // Update product display
@@ -373,8 +363,6 @@
             document.getElementById('productDescription').textContent = description;
             document.getElementById('productPrice').textContent = `$${Number.parseFloat(price).toFixed(2)}`;
             document.getElementById('productQuantity').textContent = quantity;
-            document.getElementById('productWeight').textContent = weight;
-            document.getElementById('productSku').textContent = sku;
 
             // Load image if provided
             if (image) {

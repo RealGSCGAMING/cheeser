@@ -206,6 +206,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 100%;
+    border-radius: 0;
 }
 
 .info-modal > .large:hover {
@@ -213,14 +215,27 @@ body {
     box-shadow: none;
 }
 
-.info-modal .extra-info > div:hover {
+.info-modal .extra-info:hover {
     transform: none;
     box-shadow: none;
 }
 
+.info-modal .button-row {
+    display: flex; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+}
+
+.button-row .go-button {
+    flex: 1 1 auto;
+}
+
 .go-button {
-    background-color: white;
-    color: black;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     border: 2px solid black;
     padding: 15px 30px;
     font-size: 1.5rem;

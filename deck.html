@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cheeser Inc. Keynote 2026</title>
+	<link rel="stylesheet" href="global.css">
+	<style>
+		:root {
+			--bg-color: #f3efe5;
+			--ink: #1f1a16;
+			--muted: rgba(31, 26, 22, 0.72);
+			--frame: rgba(31, 26, 22, 0.2);
+			--pulse-color: #f2b441;
+			--duration: 3800ms;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 45%), var(--bg-color);
+			color: var(--ink);
+			font-family: "BR Cobane", sans-serif;
+			transition: background-color 3800ms ease, background 3800ms ease;
+			overflow: hidden;
+		}
+
+		.slide {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			padding: clamp(16px, 3.2vw, 46px);
+			border: 1px solid var(--frame);
+			display: grid;
+			place-items: center;
+			isolation: isolate;
+		}
+
+		.screen {
+			position: fixed;
+			inset: 0;
+			transition: opacity 420ms ease;
+		}
+
+		.screen.no-transition {
+			transition: none;
+		}
+
+		.screen.is-hidden {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.corner {
+			position: absolute;
+			z-index: 4;
+			display: grid;
+			gap: 2px;
+			letter-spacing: 0.02em;
+		}
+
+		.top-left {
+			top: clamp(16px, 3.2vw, 44px);
+			left: clamp(16px, 3.2vw, 44px);
+			text-align: left;
+		}
+
+		.top-right {
+			top: clamp(16px, 3.2vw, 44px);
+			right: clamp(16px, 3.2vw, 44px);
+			text-align: right;
+			justify-items: end;
+		}
+
+		.bottom-left {
+			bottom: clamp(16px, 3.2vw, 44px);
+			left: clamp(16px, 3.2vw, 44px);
+			text-align: left;
+		}
+
+		.bottom-right {
+			bottom: clamp(16px, 3.2vw, 44px);
+			right: clamp(16px, 3.2vw, 44px);
+			text-align: right;
+		}
+
+		.kicker {
+			font-size: clamp(12px, 1.15vw, 16px);
+			text-transform: uppercase;
+			opacity: 0.78;
+			font-weight: 600;
+		}
+
+		.meta {
+			font-size: clamp(14px, 1.35vw, 20px);
+			color: var(--muted);
+			font-weight: 500;
+		}
+
+		.logo {
+			width: clamp(88px, 10vw, 160px);
+			height: auto;
+			filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
+		}
+
+		.welcome {
+			position: relative;
+			z-index: 3;
+			margin: 0;
+			font-size: clamp(64px, 14vw, 220px);
+			line-height: 0.9;
+			letter-spacing: -0.03em;
+			font-weight: 700;
+			text-transform: none;
+			text-align: center;
+			text-shadow: 0 3px 0 rgba(255, 255, 255, 0.18), 0 22px 55px rgba(0, 0, 0, 0.12);
+		}
+
+		.pulse {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 28vmin;
+			height: 28vmin;
+			min-width: 190px;
+			min-height: 190px;
+			border-radius: 999px;
+			transform: translate(-50%, -50%) scale(0.08);
+			opacity: 0;
+			pointer-events: none;
+			z-index: 2;
+			background: radial-gradient(circle, color-mix(in srgb, var(--pulse-color) 82%, #ffffff 18%) 0%, var(--pulse-color) 64%, rgba(255, 255, 255, 0) 100%);
+			mix-blend-mode: multiply;
+			box-shadow: 0 0 0 0 color-mix(in srgb, var(--pulse-color) 40%, #000000 60%);
+		}
+
+		.pulse.active {
+			animation: burst var(--duration) cubic-bezier(0.15, 0.72, 0.22, 0.99);
+		}
+
+		.start-button {
+			position: fixed;
+			left: 50%;
+			bottom: clamp(18px, 4vh, 40px);
+			transform: translate(-50%, 28px);
+			z-index: 6;
+			padding: 12px 28px;
+			border: 1px solid rgba(31, 26, 22, 0.4);
+			border-radius: 999px;
+			font: inherit;
+			font-size: clamp(14px, 1.2vw, 18px);
+			font-weight: 600;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			color: #1f1a16;
+			background: rgba(255, 255, 255, 0.82);
+			backdrop-filter: blur(6px);
+			cursor: pointer;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 260ms ease, transform 260ms ease, background-color 200ms ease;
+		}
+
+		.start-button:hover {
+			background: rgba(255, 255, 255, 0.95);
+		}
+
+		.start-button.visible {
+			opacity: 1;
+			pointer-events: auto;
+			transform: translate(-50%, 0);
+		}
+
+		.agenda-button {
+			z-index: 7;
+		}
+
+		.agenda-slide {
+			background: #ffffff;
+		}
+
+		.agenda-content {
+			width: min(900px, 92vw);
+			display: grid;
+			gap: clamp(14px, 2.3vh, 24px);
+		}
+
+		.agenda-title {
+			margin: 0;
+			font-size: clamp(42px, 8vw, 108px);
+			line-height: 0.95;
+			letter-spacing: -0.02em;
+		}
+
+		.agenda-subtitle {
+			margin: 0;
+			font-size: clamp(14px, 1.45vw, 22px);
+			color: var(--muted);
+		}
+
+		.agenda-list {
+			margin: 10px 0 0;
+			padding: 0;
+			list-style: none;
+			display: grid;
+			gap: 14px;
+		}
+
+		.agenda-item {
+			padding: clamp(10px, 1.4vw, 18px) clamp(12px, 1.9vw, 24px);
+			border: 1px solid rgba(31, 26, 22, 0.18);
+			border-radius: 14px;
+			background: rgba(255, 255, 255, 0.56);
+			backdrop-filter: blur(3px);
+			opacity: 0;
+			transform: translateY(14px);
+		}
+
+		.agenda-item-title {
+			font-size: clamp(15px, 1.55vw, 24px);
+			font-weight: 650;
+		}
+
+		.agenda-item-copy {
+			font-size: clamp(12px, 1.15vw, 17px);
+			color: var(--muted);
+		}
+
+		.agenda-slide.animate .agenda-item {
+			animation: agenda-in 560ms ease forwards;
+		}
+
+		.fade-overlay {
+			position: fixed;
+			inset: 0;
+			z-index: 10;
+			background: #ffffff;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 850ms ease;
+		}
+
+		.fade-overlay.active {
+			opacity: 1;
+		}
+
+		@keyframes burst {
+			0% {
+				opacity: 0.55;
+				transform: translate(-50%, -50%) scale(0.08);
+				box-shadow: 0 0 0 0 color-mix(in srgb, var(--pulse-color) 56%, #000000 44%);
+			}
+
+			70% {
+				opacity: 0.28;
+			}
+
+			100% {
+				opacity: 0;
+				transform: translate(-50%, -50%) scale(8.2);
+				box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+			}
+		}
+
+		@keyframes agenda-in {
+			from {
+				opacity: 0;
+				transform: translateY(14px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 640px) {
+			.slide {
+				padding: 20px;
+			}
+
+			.meta {
+				font-size: 13px;
+			}
+
+			.kicker {
+				font-size: 11px;
+			}
+
+			.top-right {
+				gap: 8px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="slide screen" id="openingSlide" aria-label="Cheeser Inc. 2026 keynote opening slide">
+		<div class="corner top-left">
+			<div class="kicker">Cheeser Inc.</div>
+			<div class="meta">Keynote 2026</div>
+		</div>
+
+		<div class="corner top-right">
+			<div class="kicker">Thursday</div>
+			<div class="meta">June 4</div>
+		</div>
+
+		<div class="corner bottom-left">
+			<div class="kicker">Live From</div>
+			<div class="meta">San Diego, CA</div>
+		</div>
+
+		<div class="corner bottom-right">
+			<img class="logo" src="assets/logo.png" alt="Cheeser Inc. logo">
+		</div>
+
+		<h1 class="welcome">Welcome.</h1>
+		<div class="pulse" aria-hidden="true"></div>
+	</main>
+	<main class="slide screen agenda-slide is-hidden" id="agendaSlide" aria-label="Cheeser Inc. 2026 keynote agenda">
+		<div class="agenda-content">
+			<p class="kicker">Cheeser Inc. Keynote 2026</p>
+			<h2 class="agenda-title">Agenda</h2>
+			<p class="agenda-subtitle">Today&apos;s key topics and announcements.</p>
+			<ul class="agenda-list">
+				<li class="agenda-item">
+					<div class="agenda-item-title">Digital Presence Transformation</div>
+					<div class="agenda-item-copy">An unveiling of Cheeser Inc.'s reimagined web platform.</div>
+				</li>
+				<li class="agenda-item">
+					<div class="agenda-item-title">Leadership & Talent Showcase</div>
+					<div class="agenda-item-copy">Meet the visionaries, operators, and artisans behind Cheeser Inc.</div>
+				</li>
+
+				<li class="agenda-item">
+					<div class="agenda-item-title">Portfolio Deep Dive</div>
+					<div class="agenda-item-copy">A comprehensive overview of Cheeser Inc.'s current offerings.</div>
+				</li>
+				<li class="agenda-item">
+					<div class="agenda-item-title">Cheeser Inc. Moon Cheese™ Campaign Premiere</div>
+					<div class="agenda-item-copy">An exclusive first look at our landmark promotional video for Cheeser Inc. Moon Cheese.</div>
+				</li>
+				<li class="agenda-item">
+					<div class="agenda-item-title">Cheeser Card℠ Onboarding Walkthrough</div>
+					<div class="agenda-item-copy">A step-by-step guide to the Cheeser Card application experience.</div>
+				</li>
+				<li class="agenda-item">
+					<div class="agenda-item-title">Closing Remarks</div>
+					<div class="agenda-item-copy">A look into Cheeser Inc.'s future.</div>
+				</li>
+			</ul>
+		</div>
+	</main>
+	<button class="start-button" id="startButton" type="button">Start</button>
+	<button class="start-button agenda-button" id="agendaButton" type="button">Continue</button>
+	<div class="fade-overlay active" id="fadeOverlay" aria-hidden="true"></div>
+
+	<script>
+		const pulse = document.querySelector('.pulse');
+		const openingSlide = document.querySelector('#openingSlide');
+		const agendaSlide = document.querySelector('#agendaSlide');
+		const startButton = document.querySelector('#startButton');
+		const agendaButton = document.querySelector('#agendaButton');
+		const fadeOverlay = document.querySelector('#fadeOverlay');
+		const colors = ['#f2b441', '#f59b6a', '#72c8b2', '#89b3f6', '#f0d367'];
+		let index = 0;
+		let colorChangeCount = -1;
+		let isTransitioning = false;
+		let currentStep = 'opening';
+
+		function runPulse() {
+			const nextColor = colors[index % colors.length];
+			index += 1;
+			colorChangeCount += 1;
+
+			document.documentElement.style.setProperty('--pulse-color', nextColor);
+			document.documentElement.style.setProperty('--bg-color', nextColor);
+
+			if (colorChangeCount % 4 === 0) {
+				for (const animation of pulse.getAnimations()) {
+					animation.cancel();
+				}
+
+				pulse.classList.remove('active');
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => {
+						pulse.classList.add('active');
+					});
+				});
+			}
+		}
+
+		function handleFirstClick() {
+			runPulse();
+			setInterval(runPulse, 3800);
+			document.removeEventListener('click', handleFirstClick);
+		}
+
+		function updateStartVisibility(event) {
+			const revealZone = globalThis.innerHeight - 130;
+			const activeButton = currentStep === 'opening' ? startButton : agendaButton;
+
+			startButton.classList.remove('visible');
+			agendaButton.classList.remove('visible');
+
+			if (event.clientY >= revealZone && !isTransitioning) {
+				activeButton.classList.add('visible');
+			}
+		}
+
+		function hideStartOnLeave() {
+			startButton.classList.remove('visible');
+			agendaButton.classList.remove('visible');
+		}
+
+		function animateAgendaItems() {
+			const agendaItems = agendaSlide.querySelectorAll('.agenda-item');
+			agendaSlide.classList.remove('animate');
+
+			agendaItems.forEach((item, itemIndex) => {
+				item.style.animationDelay = `${70 + itemIndex * 100}ms`;
+			});
+
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					agendaSlide.classList.add('animate');
+				});
+			});
+		}
+
+		function goToAgenda() {
+			if (isTransitioning || currentStep !== 'opening') {
+				return;
+			}
+
+			isTransitioning = true;
+			startButton.classList.remove('visible');
+			fadeOverlay.classList.add('active');
+
+			setTimeout(() => {
+				openingSlide.classList.add('is-hidden');
+				agendaSlide.classList.add('no-transition');
+				agendaSlide.classList.remove('is-hidden');
+				agendaSlide.getBoundingClientRect();
+				agendaSlide.classList.remove('no-transition');
+				currentStep = 'agenda';
+				animateAgendaItems();
+				fadeOverlay.classList.remove('active');
+				isTransitioning = false;
+			}, 900);
+		}
+
+		function goToIndex() {
+			if (isTransitioning || currentStep !== 'agenda') {
+				return;
+			}
+
+			isTransitioning = true;
+			agendaButton.classList.remove('visible');
+			fadeOverlay.classList.add('active');
+
+			setTimeout(() => {
+				globalThis.location.href = 'index.html';
+			}, 900);
+		}
+
+		document.addEventListener('click', handleFirstClick);
+		document.addEventListener('mousemove', updateStartVisibility);
+		document.addEventListener('mouseleave', hideStartOnLeave);
+		startButton.addEventListener('click', goToAgenda);
+		agendaButton.addEventListener('click', goToIndex);
+
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				fadeOverlay.classList.remove('active');
+			});
+		});
+	</script>
+</body>
+</html>
