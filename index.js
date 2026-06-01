@@ -6,11 +6,49 @@ if (globalThis.location.href.includes("skip")) {
     document.getElementById("welcome-modal").style.display = "none";
 }
 
+function changeAdjective() {
+    const adjectives = ["Premier", "Leading", "Top", "Favorite", "Finest", "Only"];
+    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+    document.getElementById("title-adjective").textContent = randomAdjective;
+}
+
+const colorSchemes = [
+    { primary: '#9d9d9d', secondary: '#000000', shadow: '#ffffff' },
+    { primary: '#ffffff', secondary: '#9d9d9d', shadow: '#000000' },
+    { primary: '#7f5bba', secondary: '#0ae7b2', shadow: '#063640' },
+    { primary: '#100c0e', secondary: '#cdf2bd', shadow: '#442283' },
+    { primary: '#5f2b1c', secondary: '#b26e81', shadow: '#755366' },
+    { primary: '#03484f', secondary: '#ad964a', shadow: '#d5c695' },
+]
+
+const getColorVarAsHex = (varName) => {
+    const rgb = getComputedStyle(document.documentElement).getPropertyValue(varName).match(/\d+/g).map(Number);
+    return `#${rgb.map(x => x.toString(16).padStart(2, '0')).join('')}`;
+}
+
+document.addEventListener("keypress", (event) => {
+    if (event.key == "s") {
+        alert("The current scheme is: Primary: " + getColorVarAsHex('--primary-color') + ", Secondary: " + getColorVarAsHex('--secondary-color') + ", Shadow: " + getColorVarAsHex('--shadow-color'));
+    }
+});
+
+const RANDOM = false;
+
 const menuLogo = document.getElementById("menu-logo");
 menuLogo.addEventListener("click", () => {
-    document.documentElement.style.setProperty('--primary-color', getRandomColor(100, 255));
-    document.documentElement.style.setProperty('--secondary-color', getRandomColor(0, 100));
-    document.documentElement.style.setProperty('--shadow-color', getRandomColor(0, 255));
+
+    if (RANDOM) {
+        document.documentElement.style.setProperty('--primary-color', getRandomColor(0, 255));
+        document.documentElement.style.setProperty('--secondary-color', getRandomColor(0, 255));
+        document.documentElement.style.setProperty('--shadow-color', getRandomColor(0, 255));
+    } else {
+        const randomColorScheme = colorSchemes[Math.floor(Math.random() * colorSchemes.length)];
+        document.documentElement.style.setProperty('--primary-color', randomColorScheme.primary);
+        document.documentElement.style.setProperty('--secondary-color', randomColorScheme.secondary);
+        document.documentElement.style.setProperty('--shadow-color', randomColorScheme.shadow);
+    }
+
+    changeAdjective();
 });
 
 const aboutOption = document.getElementById("about-option");
@@ -122,15 +160,15 @@ function applyExtrusionShadow(selector, color = '#00c882', length = 1500, angle 
     document.querySelectorAll(selector).forEach(el => {
         el.style.position = 'relative';
         el.style.textShadow = 'none';
-        
+
         const content = el.innerHTML;
         el.innerHTML = '';
-        
+
         const mainText = document.createElement('span');
         mainText.innerHTML = content;
         mainText.style.position = 'relative';
         mainText.style.zIndex = '2';
-        
+
         const shadowClone = document.createElement('span');
         shadowClone.innerHTML = content;
         shadowClone.style.position = 'absolute';
@@ -141,10 +179,10 @@ function applyExtrusionShadow(selector, color = '#00c882', length = 1500, angle 
         shadowClone.style.pointerEvents = 'none';
         shadowClone.style.zIndex = '1';
         shadowClone.setAttribute('aria-hidden', 'true');
-        
+
         el.appendChild(mainText);
         el.appendChild(shadowClone);
-        
+
         shadowClones.push(shadowClone);
     });
 
@@ -176,3 +214,5 @@ function applyExtrusionShadow(selector, color = '#00c882', length = 1500, angle 
 setTimeout(() => {
     applyExtrusionShadow('#title', 'var(--shadow-color)', 2000, 30, 500);
 }, 2250);
+
+changeAdjective();

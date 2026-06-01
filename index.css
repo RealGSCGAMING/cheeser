@@ -42,13 +42,14 @@ body {
 }
 
 #subtitle {
-    color: var(--secondary-color);
     font-size: 2rem;
     letter-spacing: 10px;
     line-height: 1;
     animation: flowIn 1s ease-out forwards 2.5s;
     transform: translateX(-100%);
     opacity: 0;
+    mix-blend-mode: difference;
+    color: white;
 }
 
 #selector-modal {
@@ -130,6 +131,19 @@ body {
 
 .info-modal h1 {
     font-size: 3rem;
+    color: var(--secondary-color);
+}
+
+.info-modal > p {
+    color: var(--secondary-color);
+}
+
+.info-modal > div > h1 {
+    color: black;
+}
+
+.info-modal > div > p {
+    color: black;
 }
 
 .info-modal h2 {
@@ -165,9 +179,9 @@ body {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: black;
     padding: 10px 20px;
     border-radius: 50%;
+    color: var(--secondary-color);
 }
 
 .close-button:hover {
@@ -249,6 +263,19 @@ body {
     color: white;
     transform: translateY(-5px);
     box-shadow: 5px 5px 5px rgb(111, 111, 111);
+}
+
+#team-modal {
+    display: grid;
+    /* 3 equally sized columns per row maximum, auto-resize */
+    grid-template-columns: repeat(auto-fill, minmax(max(250px, 45%), 1fr));
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+#team-modal div {
+    width: 75%;
 }
 
 /* Welcome Modal Styles */
