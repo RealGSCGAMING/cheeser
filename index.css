@@ -193,6 +193,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 50%;
+    max-height: 75vh;
 }
 
 .photo-modal .photo {
@@ -200,11 +201,11 @@ body {
     line-height: 0;
     overflow: hidden;
     max-width: 75%;
+    min-height: 50%;
 }
 
 .photo-modal .photo img {
     max-width: 100%;
-    height: auto;
 }
 
 .product {
@@ -267,8 +268,7 @@ body {
 
 #team-modal {
     display: grid;
-    /* 3 equally sized columns per row maximum, auto-resize */
-    grid-template-columns: repeat(auto-fill, minmax(max(250px, 45%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(max(250px, 30%), 1fr));
     gap: 20px;
     align-items: center;
     justify-items: center;
@@ -304,6 +304,31 @@ body {
 #welcome-logo {
     animation: stampIn 0.5s ease-in forwards;
     height: 50%;
+}
+
+/* Small Screens */
+@media screen and (max-width: 900px) {
+    #title {
+        font-size: 250%;
+    }
+
+    #subtitle {
+        font-size: 1.5rem;
+    }
+
+    #menu-logo {
+        height: 10%;
+    }
+
+    .selector-option {
+        font-size: 100%;
+        letter-spacing: 10px;
+    }
+
+    .info-modal div {
+        max-width: 100%;
+        width: 80%;
+    }
 }
 
 /* Animations */

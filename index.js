@@ -15,6 +15,15 @@ const colorSchemes = [
     { primary: '#100c0e', secondary: '#cdf2bd', shadow: '#442283' },
     { primary: '#5f2b1c', secondary: '#b26e81', shadow: '#755366' },
     { primary: '#03484f', secondary: '#ad964a', shadow: '#d5c695' },
+    { primary: '#e6427d', secondary: '#c2ddc4', shadow: '#20b890' },
+    { primary: '#595c43', secondary: '#e0a1d0', shadow: '#8d2a69' },
+    { primary: '#434dbd', secondary: '#97a1ff', shadow: '#292055' },
+    { primary: '#924563', secondary: '#cdefbf', shadow: '#786a67' },
+    { primary: '#154c28', secondary: '#ac9245', shadow: '#402c3b' },
+    { primary: '#74a68b', secondary: '#22fd9e', shadow: '#2bac6e' },
+    { primary: '#91b6ff', secondary: '#483cca', shadow: '#fba677' },
+    { primary: '#3fb67c', secondary: '#714812', shadow: '#77d1d2' },
+    { primary: '#c3dce7', secondary: '#795308', shadow: '#fdcd95' },
 ]
 
 const getColorVarAsHex = (varName) => {
